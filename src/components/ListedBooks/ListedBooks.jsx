@@ -7,7 +7,8 @@ import ReadBook from "../ReadBook/ReadBook";
 
 const ListedBooks = () => {
   const [readList, setReadList] = useState([]);
-  const [wishList,setWishList] = useState([]);
+  const [wishList, setWishList] = useState([]);
+  const [sort, setSort] = useState("");
   const allBooks = useLoaderData();
   useEffect(() => {
     const readListArr = getReadList();
@@ -25,7 +26,20 @@ const ListedBooks = () => {
       allBooks.filter((book) => wishListId.includes(book.bookId));
     setWishList(wishListBooks);
   }, [allBooks]);
-  console.log(readList);
+
+  const handleSort = (sortType) => {
+    setSort(sortType);
+    if (sortType === "Rating") {
+      const sortedReadList = [...readList].sort((a, b) => b.rating - a.rating);
+      setReadList(sortedReadList);
+    } else if (sortType === "Pages") {
+      const sortedReadList = [...readList].sort(
+        (a, b) => b.totalPages - a.totalPages
+      );
+      setReadList(sortedReadList);
+    }
+  };
+
   return (
     <div>
       <div className="bg-[#F3F3F3] text-black rounded-lg my-8 shadow-2xl flex justify-center items-center py-5">
@@ -34,17 +48,20 @@ const ListedBooks = () => {
       <div className="flex justify-center items-center my-8">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn bg-[#23BE0A] m-1">
-            Sort By
+            {sort ? `Sort by: ${sort}` : "Sort By"}
           </div>
           <ul
             tabIndex={0}
             className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
           >
-            <li>
-              <a>Item 1</a>
+            <li
+              className="cursor-pointer mb-2"
+              onClick={() => handleSort("Rating")}
+            >
+              Rating
             </li>
-            <li>
-              <a>Item 2</a>
+            <li className="cursor-pointer" onClick={() => handleSort("Pages")}>
+              Pages
             </li>
           </ul>
         </div>
@@ -53,7 +70,7 @@ const ListedBooks = () => {
       <div className="tabs tabs-lift">
         <label className="tab flex gap-2">
           <input type="radio" name="my_tabs_4" defaultChecked />
-          <FaBookReader/>
+          <FaBookReader />
           Read Books
         </label>
         <div className="tab-content bg-base-100 border-base-300 p-6">
@@ -63,7 +80,7 @@ const ListedBooks = () => {
 
         <label className="tab flex gap-2">
           <input type="radio" name="my_tabs_4" />
-          <SiWish/>
+          <SiWish />
           Wishlist Books
         </label>
         <div className="tab-content bg-base-100 border-base-300 p-6">
