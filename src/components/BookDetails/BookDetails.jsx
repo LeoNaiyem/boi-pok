@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { setReadList, setWishList } from "../../utils/addToLocalHost";
 import StarRating from "../StarRating/StarRating";
 
 const BookDetails = () => {
@@ -19,6 +20,12 @@ const BookDetails = () => {
     yearOfPublishing,
   } = Array.isArray(books) && books.find((book) => book.bookId === id);
 
+  const handleAddToReadList = (id) => {
+    setReadList(id);
+  };
+  const handleAddToWishlist = (id) => {
+    setWishList(id);
+  };
   return (
     <div className="hero bg-base-200 min-h-screen p-6">
       <div className="hero-content gap-10 flex-col lg:flex-row">
@@ -82,11 +89,17 @@ const BookDetails = () => {
           </div>
 
           <div className="mt-4">
-            <button className="btn btn-outline mr-4 text-lg font-semibold ">
-              Read
+            <button
+              onClick={() => handleAddToReadList(bookId)}
+              className="btn btn-outline mr-4 text-base font-semibold "
+            >
+              Add To Read List
             </button>
-            <button className="btn btn-primary btn-info text-lg font-semibold">
-              Wishlist
+            <button
+              onClick={() => handleAddToWishlist(bookId)}
+              className="btn btn-info text-base font-semibold"
+            >
+              Add To Wishlist
             </button>
           </div>
         </div>
