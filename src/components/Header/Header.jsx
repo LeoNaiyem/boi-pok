@@ -6,7 +6,7 @@ const Header = () => {
     <>
       <li><NavLink className='work-sans-font' to='/'>Home</NavLink></li>
       <li><NavLink className='work-sans-font' to={'/listedBooks'}>Listed Books</NavLink></li>
-      <li><NavLink className='work-sans-font' to={'/pageToRead'}>Page to Rad</NavLink></li>
+      <li><NavLink className='work-sans-font' to={'/pageToRead'}>Page to Read</NavLink></li>
     </>
   );
   return (

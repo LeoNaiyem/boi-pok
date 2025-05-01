@@ -1,21 +1,8 @@
 import React from "react";
 import { FaBuilding, FaCalendarAlt, FaFileAlt } from "react-icons/fa";
 
-const ReadBook = () => {
-    const books = {
-      bookId: 1,
-      bookName: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      image: "https://i.ibb.co.com/khHN7Pk/9780143454212.jpg",
-      review:
-        "'The Great Gatsby' by F. Scott Fitzgerald is a timeless masterpiece that delves into the decadence and disillusionment of the Jazz Age. Set in the Roaring Twenties, the novel unveils the enigmatic Jay Gatsby's extravagant parties, masking a pursuit of lost love. Narrated by Nick Carraway, the story explores themes of wealth, love, and the American Dream, drawing readers into a vivid portrayal of the glittering yet elusive world of the East and West Egg. Fitzgerald's prose is both poetic and haunting, weaving a compelling narrative that transcends its era. A poignant exploration of societal excess and the human condition, 'The Great Gatsby' remains a literary gem that resonates across generations.",
-      totalPages: 192,
-      rating: 4.2,
-      category: "Classic",
-      tags: ["Fiction", "Romance"],
-      publisher: "Scribner",
-      yearOfPublishing: 1925,
-    };
+const ReadBook = ({book}) => {
+
     const {
     author,
     category,
@@ -26,9 +13,9 @@ const ReadBook = () => {
     publisher,
     totalPages,
     yearOfPublishing,
-  }=books
+  }=book
   return (
-    <div className="hero shadow-xs shadow-gray-500 rounded-2xl  bg-base-200 p-6">
+    <div className="hero shadow-xs shadow-gray-500 rounded-2xl mb-6  bg-base-200 p-6">
       <div className="hero-content w-full gap-10 flex-col lg:flex-row">
         <div className="bg-amber-50 flex flex-1/5 items-center justify-center p-7 rounded-lg perspective-1000">
           <div className="relative transform-style-preserve-3d transition-all duration-500 hover:rotate-y-12 hover:-rotate-x-3">
